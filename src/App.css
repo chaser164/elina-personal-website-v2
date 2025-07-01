@@ -137,6 +137,7 @@ body, html, #root {
   flex-direction: column;
   gap: 0;
   padding-bottom: 150px;
+  padding-top: 100px;
 }
 
 .article-item {
@@ -164,6 +165,10 @@ body, html, #root {
     width: 20%;
     font-size: 2.4vw;
   }
+
+  .article-item {
+    font-size: 3vw;
+  }
 }
 
 @media (max-width: 600px) {
@@ -171,12 +176,12 @@ body, html, #root {
     flex-direction: column;
     align-items: center;
     gap: 24px;
-    width: 90vw;
+    width: 95vw;
     left: 50%;
     transform: translateX(-50%);
   }
   .outline-btn {
-    width: 70vw;
+    width: 68vw;
     max-width: 350px;
     font-size: 3.2vw;
   }
@@ -189,6 +194,10 @@ body, html, #root {
   }
 
   .articles-heading {
+    font-size: 4vw;
+  }
+
+  .article-item {
     font-size: 4vw;
   }
 
