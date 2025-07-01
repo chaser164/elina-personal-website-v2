@@ -38,7 +38,7 @@ function App() {
             American Paranoia: Media Narratives of AI as an "Amoral Superman"
           </a>
           <a className="article-item" href="https://www.technologyreview.kr/why-air-conditioning-is-a-climate-antihero/" target="_blank" rel="noopener noreferrer">
-            Why air-conditioning is a climate antihero
+            Why Air-Conditioning is a Climate Antihero
           </a>
         </div>
       </div>
