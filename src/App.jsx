@@ -1,9 +1,17 @@
 import './App.css';
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import doodleSplay1 from './assets/doodle_splay1.png';
+import doodleSplayMini from './assets/doodle_splay_mini.png';
 
 function App() {
   const articlesRef = useRef(null);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 800);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 800);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   return (
     <>
@@ -14,12 +22,16 @@ function App() {
           She enjoys creating at the <span className="italic">intersection</span> of technology, culture,
           and literary arts.
         </div>
-        <img src={doodleSplay1} alt="doodle splay" className="doodle-splay" />
+        <img
+          src={isMobile ? doodleSplayMini : doodleSplay1}
+          alt="doodle splay"
+          className="doodle-splay"
+        />
         <div className="spacer" />
         <div className="button-row">
           <a className="outline-btn" href="mailto:elinachoi524@gmail.com">MAIL</a>
           <a className="outline-btn" href="#writing">PUBLICATIONS</a>
-          <a className="outline-btn" href="https://www.linkedin.com/in/elinachoi/">LINKEDIN</a>
+          <a className="outline-btn" href="https://www.linkedin.com/in/elinachoi/" target="_blank" rel="noopener noreferrer">LINKEDIN</a>
         </div>
       </div>
       <div className="articles-section" ref={articlesRef} id="writing">

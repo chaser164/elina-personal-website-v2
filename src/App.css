@@ -1,3 +1,7 @@
+:root {
+  --fade-in-duration: 1.5s;
+}
+
 body, html, #root {
   height: 100%;
   margin: 0;
@@ -36,12 +40,8 @@ body, html, #root {
   line-height: 1;
   width: 90vw;
   position: relative;
-  z-index: 1;
-  /* fade logic
-  -webkit-mask-image: linear-gradient(to bottom, #fff 70%, transparent 100%);
-  mask-image: linear-gradient(to bottom, #fff 70%, transparent 100%); */
-  /* padding-bottom: 100px; */
   z-index: 1000;
+  animation: fadeIn var(--fade-in-duration) ease 0.1s both;
 }
 
 .name {
@@ -57,13 +57,13 @@ body, html, #root {
 }
 
 .doodle-splay {
-
   position: absolute;
   top: 40vh;
   left: 50%;
   transform: translateX(-50%);
   width: 80%;
   pointer-events: none;
+  animation: fadeIn var(--fade-in-duration) ease 1.3s both;
 }
 
 .button-row {
@@ -81,6 +81,7 @@ body, html, #root {
   padding-bottom: 330px;
   -webkit-mask-image: linear-gradient(to bottom, transparent 50px, #fff 100px, #fff 100%);
   mask-image: linear-gradient(to bottom, transparent 50px, #fff 100px, #fff 100%);
+  animation: fadeIn var(--fade-in-duration) ease 0.7s both;
 }
 
 .writing-title {
@@ -179,6 +180,7 @@ body, html, #root {
     width: 95vw;
     left: 50%;
     transform: translateX(-50%);
+    bottom: -6vh;
   }
   .outline-btn {
     width: 68vw;
@@ -205,4 +207,13 @@ body, html, #root {
     top: 40vh;
   }
   
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
