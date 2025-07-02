@@ -1,3 +1,3 @@
 # Elina's Personal Website
 
-My girlfriend's personal website!
+[elinachoi.com](https://elinachoi.com/)
