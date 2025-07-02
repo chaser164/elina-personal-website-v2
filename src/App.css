@@ -192,7 +192,7 @@ body, html, #root {
   }
 
   .doodle-splay {
-    top: 46vh;
+    top: 32vh;
   }
 
   .articles-heading {
@@ -201,10 +201,6 @@ body, html, #root {
 
   .article-item {
     font-size: 4vw;
-  }
-
-  .doodle-splay {
-    top: 40vh;
   }
   
 }
