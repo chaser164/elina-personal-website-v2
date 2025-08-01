@@ -131,30 +131,70 @@ body, html, #root {
   width: 85vw;
 }
 
-.article-list {
-  width: 80vw;
-  max-width: 900px;
+.article-grid {
+  width: 85vw;
+  max-width: 1200px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 40px;
+  padding: 100px 0 150px 0;
+}
+
+.article-card {
   display: flex;
   flex-direction: column;
-  gap: 0;
-  padding-bottom: 150px;
-  padding-top: 100px;
-}
-
-.article-item {
-  font-family: 'Times New Roman', Times, serif;
-  font-size: 1.7vw;
-  color: #444;
-  padding: 32px 0 32px 2vw;
-  border-bottom: 1.5px solid #bbb;
-  width: 96%;
-  margin: 0 auto;
-  box-sizing: border-box;
+  text-decoration: none;
+  color: inherit;
   background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.article-item:last-child {
-  border-bottom: none;
+.article-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.article-image {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-bottom: 1px solid #eee;
+}
+
+.article-content {
+  padding: 24px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.article-publisher {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 2vw;
+  color: #666;
+  font-weight: bold;
+  margin-bottom: 12px;
+  letter-spacing: 0.5px;
+}
+
+.article-divider {
+  width: 100%;
+  height: 1px;
+  background-color: #ddd;
+  margin-bottom: 16px;
+}
+
+.article-title {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 1.3vw;
+  color: #444;
+  font-weight: 400;
+  margin: 0;
+  line-height: 1.4;
+  flex-grow: 1;
 }
 
 @media (max-width: 830px) and (min-width: 600px) {
@@ -167,8 +207,17 @@ body, html, #root {
     font-size: 2.4vw;
   }
 
-  .article-item {
-    font-size: 3vw;
+  .article-grid {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 30px;
+  }
+
+  .article-publisher {
+    font-size: 1.8vw;
+  }
+
+  .article-title {
+    font-size: 2.2vw;
   }
 }
 
@@ -199,10 +248,28 @@ body, html, #root {
     font-size: 4vw;
   }
 
-  .article-item {
+  .article-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    width: 90vw;
+    padding: 60px 0 100px 0;
+  }
+
+  .article-content {
+    padding: 20px;
+  }
+
+  .article-publisher {
+    font-size: 3.2vw;
+  }
+
+  .article-title {
     font-size: 4vw;
   }
-  
+
+  .article-image {
+    aspect-ratio: 1 / 1;
+  }
 }
 
 @keyframes fadeIn {

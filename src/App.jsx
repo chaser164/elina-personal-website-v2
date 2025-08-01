@@ -36,21 +36,46 @@ function App() {
       </div>
       <div className="articles-section" ref={articlesRef} id="writing">
         <div className="main-text writing-title">Published Work & Translations</div>
-        <div className="article-list">
-        <a className="article-item" href="https://elinachoi.substack.com/" target="_blank" rel="noopener noreferrer">
-            Substack: Edible Tongues
+        <div className="article-grid">
+          <a className="article-card" href="https://elinachoi.substack.com/" target="_blank" rel="noopener noreferrer">
+            <img src="/substack.png" alt="Substack" className="article-image" />
+            <div className="article-content">
+              <div className="article-publisher">Substack</div>
+              <div className="article-divider"></div>
+              <h3 className="article-title">Edible Tongues</h3>
+            </div>
           </a>
-          <a className="article-item" href="https://brownfashion.wixsite.com/fashionatbrowneditor/copy-of-williams-from-the-court-to-c-3" target="_blank" rel="noopener noreferrer">
-            Creating "Underground" Fashion Media: A Conversation with Viv Chen
+          <a className="article-card" href="https://campanthropology.org/2024/09/30/american-paranoia-media-narratives-of-ai-as-an-amoral-superman/" target="_blank" rel="noopener noreferrer">
+            <img src="/ai.png" alt="AI Article" className="article-image" />
+            <div className="article-content">
+              <div className="article-publisher">CaMP Anthropology</div>
+              <div className="article-divider"></div>
+              <h3 className="article-title">American Paranoia: Media Narratives of AI as an "Amoral Superman"</h3>
+            </div>
           </a>
-          <a className="article-item" href="https://brownfashion.wixsite.com/fashionatbrowneditor/copy-of-the-golden-age-of-menswear" target="_blank" rel="noopener noreferrer">
-            Capturing Nostalgia: Sarah Bouwman
+          <a className="article-card" href="https://brownfashion.wixsite.com/fashionatbrowneditor/copy-of-the-golden-age-of-menswear" target="_blank" rel="noopener noreferrer">
+            <img src="/sarabauman.png" alt="Sarah Bouwman Feature" className="article-image" />
+            <div className="article-content">
+              <div className="article-publisher">Fashion @ Brown</div>
+              <div className="article-divider"></div>
+              <h3 className="article-title">Capturing Nostalgia: Sarah Bouwman</h3>
+            </div>
           </a>
-          <a className="article-item" href="https://campanthropology.org/2024/09/30/american-paranoia-media-narratives-of-ai-as-an-amoral-superman/" target="_blank" rel="noopener noreferrer">
-            American Paranoia: Media Narratives of AI as an "Amoral Superman"
+          <a className="article-card" href="https://brownfashion.wixsite.com/fashionatbrowneditor/copy-of-williams-from-the-court-to-c-3" target="_blank" rel="noopener noreferrer">
+            <img src="/vivchen.png" alt="Viv Chen Interview" className="article-image" />
+            <div className="article-content">
+              <div className="article-publisher">Fashion @ Brown</div>
+              <div className="article-divider"></div>
+              <h3 className="article-title">Creating "Underground" Fashion Media: A Conversation with Viv Chen</h3>
+            </div>
           </a>
-          <a className="article-item" href="https://www.technologyreview.kr/why-air-conditioning-is-a-climate-antihero/" target="_blank" rel="noopener noreferrer">
-            Why Air-Conditioning is a Climate Antihero
+          <a className="article-card" href="https://www.technologyreview.kr/why-air-conditioning-is-a-climate-antihero/" target="_blank" rel="noopener noreferrer">
+            <img src="/aircons.png" alt="Air Conditioning Article" className="article-image" />
+            <div className="article-content">
+              <div className="article-publisher">MIT Technology Review</div>
+              <div className="article-divider"></div>
+              <h3 className="article-title">Why Air-Conditioning is a Climate Antihero</h3>
+            </div>
           </a>
         </div>
       </div>
