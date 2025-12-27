@@ -3,14 +3,34 @@ import { useRef, useState, useEffect } from 'react';
 import doodleSplay1 from './assets/doodle_splay1.png';
 import doodleSplayMini from './assets/doodle_splay_mini.png';
 
+// Just use the image URL directly - user should provide direct image links
+// (from ImgBB, Cloudinary, etc.)
+
 function App() {
   const articlesRef = useRef(null);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1000);
+  const [articles, setArticles] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 1000);
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  useEffect(() => {
+    async function fetchArticles() {
+      try {
+        const response = await fetch('/.netlify/functions/data-source');
+        const data = await response.json();
+        setArticles(data);
+      } catch (error) {
+        console.error('Failed to fetch articles:', error);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchArticles();
   }, []);
 
   return (
@@ -37,54 +57,34 @@ function App() {
       <div className="articles-section" ref={articlesRef} id="writing">
         <div className="main-text writing-title">Published Work & Translations</div>
         <div className="article-grid">
-          <a className="article-card" href="http://bostonglobe.com/2025/12/23/metro/brown-shooting-student-commentary-love/?s_campaign=8315:varf" target="_blank" rel="noopener noreferrer">
-            <img src="/flowers.png" alt="Brown Shooting Student Commentary on Love" className="article-image" />
-            <div className="article-content">
-              <div className="article-publisher">Boston Globe</div>
-              <div className="article-divider"></div>
-              <h3 className="article-title">When school is also home: A Brown student, originally from Korea, finds comfort after a nightmare</h3>
-            </div>
-          </a>
-          <a className="article-card" href="https://elinachoi.substack.com/" target="_blank" rel="noopener noreferrer">
-            <img src="/substack.png" alt="Substack" className="article-image" />
-            <div className="article-content">
-              <div className="article-publisher">Substack</div>
-              <div className="article-divider"></div>
-              <h3 className="article-title">Edible Tongues</h3>
-            </div>
-          </a>
-          <a className="article-card" href="https://campanthropology.org/2024/09/30/american-paranoia-media-narratives-of-ai-as-an-amoral-superman/" target="_blank" rel="noopener noreferrer">
-            <img src="/ai.png" alt="AI Article" className="article-image" />
-            <div className="article-content">
-              <div className="article-publisher">CaMP Anthropology</div>
-              <div className="article-divider"></div>
-              <h3 className="article-title">American Paranoia: Media Narratives of AI as an "Amoral Superman"</h3>
-            </div>
-          </a>
-          <a className="article-card" href="https://brownfashion.wixsite.com/fashionatbrowneditor/copy-of-the-golden-age-of-menswear" target="_blank" rel="noopener noreferrer">
-            <img src="/sarabauman.png" alt="Sarah Bouwman Feature" className="article-image" />
-            <div className="article-content">
-              <div className="article-publisher">Fashion @ Brown</div>
-              <div className="article-divider"></div>
-              <h3 className="article-title">Capturing Nostalgia: Sarah Bouwman</h3>
-            </div>
-          </a>
-          <a className="article-card" href="https://brownfashion.wixsite.com/fashionatbrowneditor/copy-of-williams-from-the-court-to-c-3" target="_blank" rel="noopener noreferrer">
-            <img src="/vivchen.png" alt="Viv Chen Interview" className="article-image" />
-            <div className="article-content">
-              <div className="article-publisher">Fashion @ Brown</div>
-              <div className="article-divider"></div>
-              <h3 className="article-title">Creating "Underground" Fashion Media: A Conversation with Viv Chen</h3>
-            </div>
-          </a>
-          <a className="article-card" href="https://www.technologyreview.kr/why-air-conditioning-is-a-climate-antihero/" target="_blank" rel="noopener noreferrer">
-            <img src="/aircons.png" alt="Air Conditioning Article" className="article-image" />
-            <div className="article-content">
-              <div className="article-publisher">MIT Technology Review</div>
-              <div className="article-divider"></div>
-              <h3 className="article-title">Why Air-Conditioning is a Climate Antihero</h3>
-            </div>
-          </a>
+          {loading ? (
+            <div className="loading">Loading articles...</div>
+          ) : (
+            articles.map((article, index) => (
+              <a 
+                key={index} 
+                className="article-card" 
+                href={article.link} 
+                target="_blank" 
+                rel="noopener noreferrer"
+              >
+                <img 
+                  src={article.image} 
+                  alt={article.title} 
+                  className="article-image"
+                  onError={(e) => {
+                    console.error('Image failed to load:', article.image);
+                    e.target.style.display = 'none';
+                  }}
+                />
+                <div className="article-content">
+                  <div className="article-publisher">{article.source}</div>
+                  <div className="article-divider"></div>
+                  <h3 className="article-title">{article.title}</h3>
+                </div>
+              </a>
+            ))
+          )}
         </div>
       </div>
     </>
