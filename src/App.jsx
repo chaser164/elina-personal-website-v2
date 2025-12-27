@@ -37,6 +37,14 @@ function App() {
       <div className="articles-section" ref={articlesRef} id="writing">
         <div className="main-text writing-title">Published Work & Translations</div>
         <div className="article-grid">
+          <a className="article-card" href="http://bostonglobe.com/2025/12/23/metro/brown-shooting-student-commentary-love/?s_campaign=8315:varf" target="_blank" rel="noopener noreferrer">
+            <img src="/flowers.png" alt="Brown Shooting Student Commentary on Love" className="article-image" />
+            <div className="article-content">
+              <div className="article-publisher">Boston Globe</div>
+              <div className="article-divider"></div>
+              <h3 className="article-title">When school is also home: A Brown student, originally from Korea, finds comfort after a nightmare</h3>
+            </div>
+          </a>
           <a className="article-card" href="https://elinachoi.substack.com/" target="_blank" rel="noopener noreferrer">
             <img src="/substack.png" alt="Substack" className="article-image" />
             <div className="article-content">
@@ -75,14 +83,6 @@ function App() {
               <div className="article-publisher">MIT Technology Review</div>
               <div className="article-divider"></div>
               <h3 className="article-title">Why Air-Conditioning is a Climate Antihero</h3>
-            </div>
-          </a>
-          <a className="article-card" href="http://bostonglobe.com/2025/12/23/metro/brown-shooting-student-commentary-love/?s_campaign=8315:varf" target="_blank" rel="noopener noreferrer">
-            <img src="/flowers.png" alt="Brown Shooting Student Commentary on Love" className="article-image" />
-            <div className="article-content">
-              <div className="article-publisher">Boston Globe</div>
-              <div className="article-divider"></div>
-              <h3 className="article-title">When school is also home: A Brown student, originally from Korea, finds comfort after a nightmare</h3>
             </div>
           </a>
         </div>
