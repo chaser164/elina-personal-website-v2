@@ -21,7 +21,7 @@ function App() {
   useEffect(() => {
     async function fetchArticles() {
       try {
-        const response = await fetch('/.netlify/functions/data-source');
+        const response = await fetch('/api/data-source');
         const data = await response.json();
         setArticles(data);
       } catch (error) {

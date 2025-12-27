@@ -1,21 +1,23 @@
-// Fetch data directly from a public Google Sheet (faster than Apps Script)
+// Edge function to fetch data from a public Google Sheet (faster than serverless!)
 
-export async function handler(event, context) {
-  const SHEET_ID = process.env.GOOGLE_SHEETS_ID;
+export default async function handler(request, context) {
+  const SHEET_ID = Deno.env.get('GOOGLE_SHEETS_ID');
 
   if (!SHEET_ID) {
-    return {
-      statusCode: 500,
-      headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
-      },
-      body: JSON.stringify({ error: 'GOOGLE_SHEETS_ID environment variable not set' }),
-    };
+    return new Response(
+      JSON.stringify({ error: 'GOOGLE_SHEETS_ID environment variable not set' }),
+      {
+        status: 500,
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+        },
+      }
+    );
   }
 
   try {
-    // Fetch the sheet as CSV (sheet must be published or shared publicly)
+    // Fetch the sheet as CSV
     const csvUrl = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv&gid=0`;
     
     const response = await fetch(csvUrl);
@@ -56,24 +58,30 @@ export async function handler(event, context) {
       };
     });
 
-    return {
-      statusCode: 200,
+    return new Response(JSON.stringify(data), {
+      status: 200,
       headers: {
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*',
-        'Cache-Control': 'public, max-age=60', // Cache for 1 minute
+        'Cache-Control': 'public, max-age=60',
       },
-      body: JSON.stringify(data),
-    };
+    });
   } catch (error) {
     console.error('Error fetching Google Sheet:', error);
-    return {
-      statusCode: 500,
-      headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
-      },
-      body: JSON.stringify({ error: error.message }),
-    };
+    return new Response(
+      JSON.stringify({ error: error.message }),
+      {
+        status: 500,
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+        },
+      }
+    );
   }
 }
+
+export const config = {
+  path: '/api/data-source',
+};
+
